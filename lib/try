@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+
+class MyParagraph extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Paragraph Example'),
+        ),
+        body: Center(
+          child: Container(
+            padding: EdgeInsets.all(16.0),
+            child: RichText(
+              text: TextSpan(
+                style: DefaultTextStyle.of(context).style,
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'First paragraph of text.\n',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  TextSpan(
+                    text:
+                        'Second paragraph of text with a different style.\n',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.red,
+                      fontStyle: FontStyle.italic,
+                    ),
+                  ),
+                  TextSpan(
+                    text: 'Third paragraph of text.\n',
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MyParagraph());
+}
