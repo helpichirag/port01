@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:portfolio/colorconst.dart';
+import 'package:portfolio/pages/blog_page.dart';
+import 'package:portfolio/pages/pictures_screen.dart';
+
 
 
 class HomePage extends StatefulWidget{
@@ -26,78 +29,96 @@ class HomePageState extends State<HomePage>{
 
 
 
-      body:Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 30.0),      
-          child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      body:SingleChildScrollView(
+        child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5, vertical: 30.0),      
+            child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+        
+            children: [
       
-          children: [
-
-          if(MediaQuery.of(context).size.width >= 480)Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                 TextButton(onPressed: (){}, child: Text("Projects", style: TextStyle(color: textColor, fontSize: 24),)),
-                 TextButton(onPressed: (){}, child: Text("Skills",style: TextStyle(color: textColor, fontSize: 24),)),
-                 TextButton(onPressed: (){}, child: Text("Education",style: TextStyle(color: textColor, fontSize: 24),)),
-                 TextButton(onPressed: (){}, child: Text("Blog",style: TextStyle(color: textColor, fontSize: 24),)),
-                 TextButton(onPressed: (){}, child: Text("Connect",style: TextStyle(color: textColor, fontSize: 24),)),
-                ],
-              ),
-
-            SizedBox(height: 100,),
-
-            Padding(
-              padding: const EdgeInsets.only(left:180, right: 10),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                final screenWidth = initWidth*0.8;
-                final targetWidth = screenWidth <=  initWidth*0.8? initHidth*0.5 : initHidth * 1;
-                
-
-                return Container(
-                  width: screenWidth,
-                  height: targetWidth,
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 0.5, color: borderColor),
-                    borderRadius: BorderRadius.circular(29.0),
-                  ),
-                  
-                          child: RichText(
-                text: TextSpan(
-                  style: DefaultTextStyle.of(context).style,
-                  children:const  <TextSpan>[
-                    TextSpan(
-                      text: 'Hello, I am a Flutter Developer with a passion for crafting innovative .\n',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    TextSpan(
-                      text:
-                          'Second paragraph of text with a different style.\n',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.red,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'Third paragraph of text.\n',
-                    ),
+            if(MediaQuery.of(context).size.width >= 480)Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                   TextButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return BlogScreen();
+                    }));
+                   }, child: Text("Blog", style: TextStyle(color: textColor, fontSize: 24),)),
+                   TextButton(onPressed: (){
+                     Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return PictScreenCamera();
+                    }));
+                   }, child: Text("Images",style: TextStyle(color: textColor, fontSize: 24),)),
+                   TextButton(onPressed: (){}, child: Text("Education",style: TextStyle(color: textColor, fontSize: 24),)),
+                   TextButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return BlogScreen();
+                    }));
+                   }, child: Text("Blog",style: TextStyle(color: textColor, fontSize: 24),)),
+                   TextButton(onPressed: (){}, child: Text("Connect",style: TextStyle(color: textColor, fontSize: 24),)),
                   ],
                 ),
-                          ),
-                        );
-
-                }
-              ),
-        
+      
+              SizedBox(height: 100,),
+      
+              Padding(
+                padding: const EdgeInsets.only(left:180, right: 10),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                  final screenWidth = initWidth*0.8;
+                  final targetWidth = screenWidth <=  initWidth*0.8? initHidth*0.5 : initHidth * 1;
+                  
+      
+                  return Center(
+                    child: Container(
+                      width: screenWidth,
+                      height: targetWidth,
+                      decoration: BoxDecoration(
+                        border: Border.all(width: 0.5, color: borderColor),
+                        borderRadius: BorderRadius.circular(29.0),
+                      ),
+                      
+                              child: Center(
+                                child: RichText(
+                                                text: TextSpan(
+                                                  style: DefaultTextStyle.of(context).style,
+                                                  children:const  <TextSpan>[
+                                                    TextSpan(
+                                                      text: 'Hello, I am a Flutter Developer with a passion for crafting innovative .\n',
+                                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                'Second paragraph of text with a different style.\n',
+                                                      style: TextStyle(
+                                                        fontSize: 18.0,
+                                                        color: Colors.red,
+                                                        fontStyle: FontStyle.italic,
+                                                      ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: 'Third paragraph of text.\n',
+                                                    ),
+                                                  ],
+                                                ),
+                                ),
+                              ),
+                            ),
+                  );
+      
+                  }
+                ),
           
             
+              
+              
+              )
             
-            )
-          
-          ]
-
-         
+            ]
+      
+           
+          ),
         ),
       ),
 
@@ -131,7 +152,17 @@ class HomePageState extends State<HomePage>{
       ]
       
 
-      ):null
+      ):null,
+
+
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return BlogScreen();
+                    }));
+      }, child: Icon(Icons.read_more),),
     );
+
+
+
   }
 }
